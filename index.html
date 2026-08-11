@@ -1135,8 +1135,8 @@ button,input,textarea{
 
 
 <script>
-
-  function confirmPayment(){
+  
+function confirmPayment(){
 
   const name = document
     .getElementById("customerName")
@@ -1148,15 +1148,20 @@ button,input,textarea{
     return;
   }
 
-  alert(
-    "Terima kasih " + name +
-    " 🙏\n\n" +
-    "Konfirmasi pembayaran sudah diterima.\n" +
-    "Silakan kirim bukti pembayaran melalui WhatsApp."
+  const message =
+    "Halo, saya " + name +
+    ". Saya sudah melakukan pembayaran untuk pesanan saya. 🙏\n\n" +
+    "Saya akan mengirimkan bukti pembayaran di chat ini.";
+
+  const whatsappNumber = "6283897619776";
+
+  window.open(
+    "https://wa.me/" + whatsappNumber +
+    "?text=" + encodeURIComponent(message),
+    "_blank"
   );
-
 }
-
+  
 const store = {
 
   name:"Toko Sembako Hj Heni",
