@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Toko Sembako Hj Heni</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7f5;
+  color:#222;
+}
+
+header{
+  background:#087f5b;
+  color:white;
+  padding:22px 15px;
+  text-align:center;
+}
+
+header h1{
+  font-size:25px;
+  margin-bottom:6px;
+}
+
+header p{
+  font-size:14px;
+  opacity:.9;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px 15px 40px;
+}
+
+.info{
+  background:white;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.info h2{
+  color:#087f5b;
+  margin-bottom:10px;
+}
+
+.info p{
+  margin:7px 0;
+  font-size:14px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+}
+
+.product{
+  background:white;
+  border-radius:15px;
+  padding:16px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.product .emoji{
+  font-size:40px;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.product h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.price{
+  color:#087f5b;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.stock{
+  font-size:13px;
+  color:#666;
+  margin-bottom:12px;
+}
+
+.order-btn{
+  display:block;
+  width:100%;
+  background:#25d366;
+  color:white;
+  text-decoration:none;
+  text-align:center;
+  padding:10px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.order-btn:hover{
+  opacity:.9;
+}
+
+.contact{
+  background:#087f5b;
+  color:white;
+  margin-top:25px;
+  padding:22px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.contact h2{
+  margin-bottom:10px;
+}
+
+.contact a{
+  display:block;
+  margin-top:12px;
+  padding:12px;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.whatsapp{
+  background:#25d366;
+  color:white;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛒 Toko Sembako Hj Heni</h1>
+  <p>Kebutuhan sembako harian Anda</p>
+</header>
+
+<div class="container">
+
+  <div class="info">
+    <h2>📍 Informasi Toko</h2>
+
+    <p><b>Nama:</b> Toko Sembako Hj Heni</p>
+
+    <p>
+      <b>Alamat:</b>
+      Jln Raya Labuan KM.12, Cipeucang, Pandeglang
+    </p>
+
+    <p><b>Jam Buka:</b> 06.00 - 21.00</p>
+  </div>
+
+  <h2 style="margin-bottom:15px;">🛍️ Produk Kami</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <div class="emoji">🍚</div>
+      <h3>Beras 1 Liter</h3>
+      <div class="price">Rp13.000</div>
+      <div class="stock">Stok: 25 kg</div>
+
+      <a class="order-btn"
+         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Beras%201%20Liter%20seharga%20Rp13.000."
+         target="_blank">
+         Pesan via WhatsApp
+      </a>
+    </div>
+
+    <div class="product">
+      <div class="emoji">🫗</div>
+      <h3>Minyak Goreng 1 Liter</h3>
+      <div class="price">Rp20.000</div>
+      <div class="stock">Stok: 300</div>
+
+      <a class="order-btn"
+         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Minyak%20Goreng%201%20Liter%20seharga%20Rp20.000."
+         target="_blank">
+         Pesan via WhatsApp
+      </a>
+    </div>
+
+    <div class="product">
+      <div class="emoji">🍬</div>
+      <h3>Gula 1 Kg</h3>
+      <div class="price">Rp17.000</div>
+      <div class="stock">Stok: 15</div>
+
+      <a class="order-btn"
+         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Gula%201%20Kg%20seharga%20Rp17.000."
+         target="_blank">
+         Pesan via WhatsApp
+      </a>
+    </div>
+
+    <div class="product">
+      <div class="emoji">🥚</div>
+      <h3>Telur 1 Kg</h3>
+      <div class="price">Rp30.000</div>
+      <div class="stock">Stok: 12</div>
+
+      <a class="order-btn"
+         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Telur%201%20Kg%20seharga%20Rp30.000."
+         target="_blank">
+         Pesan via WhatsApp
+      </a>
+    </div>
+
+    <div class="product">
+      <div class="emoji">🍜</div>
+      <h3>Mi Instan</h3>
+      <div class="price">Rp3.500</div>
+      <div class="stock">Stok: 50</div>
+
+      <a class="order-btn"
+         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Mi%20Instan%20seharga%20Rp3.500."
+         target="_blank">
+         Pesan via WhatsApp
+      </a>
+    </div>
+
+  </div>
+
+  <div class="contact">
+    <h2>📞 Hubungi Kami</h2>
+    <p>Untuk pemesanan dan informasi produk</p>
+
+    <a class="whatsapp"
+       href="https://wa.me/6283897619776"
+       target="_blank">
+       💬 Chat WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Toko Sembako Hj Heni
+</footer>
+
+</body>
+</html>
