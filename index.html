@@ -15,249 +15,1335 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:#f5f7f5;
+  background:#f4f7f5;
   color:#222;
+  padding-bottom:90px;
 }
 
-header{
-  background:#087f5b;
+button,input,textarea{
+  font-family:inherit;
+}
+
+.header{
+  background:linear-gradient(135deg,#087f5b,#16a34a);
   color:white;
-  padding:22px 15px;
+  padding:22px 15px 28px;
   text-align:center;
+  border-radius:0 0 25px 25px;
 }
 
-header h1{
+.header h1{
   font-size:25px;
-  margin-bottom:6px;
+  margin-bottom:7px;
 }
 
-header p{
+.header p{
   font-size:14px;
+}
+
+.header .address{
+  margin-top:10px;
+  font-size:12px;
   opacity:.9;
+  line-height:1.5;
 }
 
 .container{
   max-width:900px;
   margin:auto;
-  padding:20px 15px 40px;
+  padding:18px 15px 30px;
 }
 
-.info{
+.search{
+  width:100%;
+  border:0;
+  outline:none;
   background:white;
-  border-radius:15px;
-  padding:18px;
-  margin-bottom:20px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.info h2{
-  color:#087f5b;
-  margin-bottom:10px;
-}
-
-.info p{
-  margin:7px 0;
+  padding:15px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
   font-size:14px;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:14px 0;
+}
+
+.categories button{
+  border:0;
+  background:white;
+  padding:9px 14px;
+  border-radius:20px;
+  white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.categories button.active{
+  background:#16a34a;
+  color:white;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 .product{
   background:white;
-  border-radius:15px;
-  padding:16px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.product .emoji{
-  font-size:40px;
-  text-align:center;
-  margin-bottom:10px;
+.product-icon{
+  height:95px;
+  border-radius:12px;
+  background:#eaf8ef;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:48px;
+  margin-bottom:12px;
 }
 
 .product h3{
-  font-size:17px;
-  margin-bottom:8px;
+  font-size:15px;
+  line-height:1.3;
 }
 
 .price{
   color:#087f5b;
-  font-size:18px;
   font-weight:bold;
-  margin-bottom:7px;
+  font-size:17px;
+  margin-top:7px;
 }
 
 .stock{
-  font-size:13px;
-  color:#666;
-  margin-bottom:12px;
+  color:#777;
+  font-size:11px;
+  margin-top:5px;
 }
 
-.order-btn{
-  display:block;
-  width:100%;
-  background:#25d366;
-  color:white;
-  text-decoration:none;
-  text-align:center;
-  padding:10px;
+.quantity{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+.quantity button{
+  width:32px;
+  height:32px;
+  border:0;
   border-radius:9px;
+  background:#e7f7ed;
+  color:#087f5b;
+  font-size:20px;
   font-weight:bold;
 }
 
-.order-btn:hover{
-  opacity:.9;
+.quantity span{
+  font-weight:bold;
 }
 
-.contact{
-  background:#087f5b;
+.add{
+  width:100%;
+  border:0;
+  background:#16a34a;
   color:white;
-  margin-top:25px;
-  padding:22px;
-  border-radius:15px;
-  text-align:center;
-}
-
-.contact h2{
-  margin-bottom:10px;
-}
-
-.contact a{
-  display:block;
-  margin-top:12px;
-  padding:12px;
+  padding:10px;
   border-radius:9px;
-  text-decoration:none;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+.add:disabled{
+  background:#aaa;
+}
+
+.empty{
+  grid-column:1/-1;
+  background:white;
+  border-radius:15px;
+  padding:35px;
+  text-align:center;
+  color:#777;
+}
+
+.cart-bar{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  max-width:876px;
+  margin:auto;
+  background:#172018;
+  color:white;
+  border-radius:17px;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:50;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.cart-count{
+  font-size:12px;
+  color:#ccc;
+}
+
+.cart-total{
+  font-size:17px;
+  font-weight:bold;
+  margin-top:3px;
+}
+
+.checkout{
+  border:0;
+  background:#22c55e;
+  color:white;
+  padding:12px 16px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:flex-end;
+  z-index:100;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:700px;
+  max-height:92vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:20px 15px 25px;
+  margin:auto;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.close{
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:50%;
+  background:#eee;
+  font-size:22px;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item-info{
+  flex:1;
+}
+
+.cart-item-info strong{
+  display:block;
+  font-size:14px;
+}
+
+.cart-item-info small{
+  color:#777;
+}
+
+.cart-controls{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.cart-controls button{
+  width:29px;
+  height:29px;
+  border:0;
+  border-radius:8px;
+  background:#e7f7ed;
+  color:#087f5b;
+  font-weight:bold;
+}
+
+.form-group{
+  margin-top:13px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea{
+  width:100%;
+  border:1px solid #ddd;
+  outline:none;
+  border-radius:10px;
+  padding:12px;
+}
+
+.form-group textarea{
+  min-height:75px;
+  resize:vertical;
+}
+
+.delivery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.delivery label{
+  border:1px solid #ddd;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  font-size:12px;
+}
+
+.delivery input{
+  display:none;
+}
+
+.delivery label.selected{
+  border-color:#16a34a;
+  background:#eaf8ef;
+  color:#087f5b;
+  font-weight:bold;
+}
+
+.summary{
+  background:#f4f7f5;
+  padding:13px;
+  border-radius:12px;
+  margin-top:15px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:7px;
+  font-size:13px;
+}
+
+.summary-total{
+  border-top:1px solid #ddd;
+  padding-top:10px;
+  margin-top:8px;
+  font-size:17px;
   font-weight:bold;
 }
 
 .whatsapp{
+  width:100%;
+  border:0;
   background:#25d366;
   color:white;
+  padding:14px;
+  border-radius:11px;
+  margin-top:15px;
+  font-weight:bold;
+  font-size:15px;
 }
 
-footer{
+.footer{
   text-align:center;
   padding:20px;
   color:#777;
-  font-size:13px;
+  font-size:12px;
+}
+
+@media(max-width:420px){
+
+  .products{
+    gap:9px;
+  }
+
+  .product{
+    padding:10px;
+  }
+
+  .product-icon{
+    height:90px;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="header">
+
   <h1>🛒 Toko Sembako Hj Heni</h1>
-  <p>Kebutuhan sembako harian Anda</p>
+
+  <p>Belanja kebutuhan harian dengan mudah</p>
+
+  <div class="address">
+    📍 Jln Raya Labuan KM.12,
+    Cipeucang, Pandeglang
+    <br>
+    🕕 Buka 06.00 - 21.00
+  </div>
+
 </header>
 
-<div class="container">
 
-  <div class="info">
-    <h2>📍 Informasi Toko</h2>
+<main class="container">
 
-    <p><b>Nama:</b> Toko Sembako Hj Heni</p>
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="🔎 Cari produk..."
+    oninput="renderProducts()"
+  >
 
-    <p>
-      <b>Alamat:</b>
-      Jln Raya Labuan KM.12, Cipeucang, Pandeglang
-    </p>
 
-    <p><b>Jam Buka:</b> 06.00 - 21.00</p>
-  </div>
+  <div class="categories">
 
-  <h2 style="margin-bottom:15px;">🛍️ Produk Kami</h2>
+    <button
+      class="active"
+      onclick="setCategory('Semua',this)">
+      Semua
+    </button>
 
-  <div class="products">
+    <button
+      onclick="setCategory('Beras',this)">
+      🍚 Beras
+    </button>
 
-    <div class="product">
-      <div class="emoji">🍚</div>
-      <h3>Beras 1 Liter</h3>
-      <div class="price">Rp13.000</div>
-      <div class="stock">Stok: 25 kg</div>
+    <button
+      onclick="setCategory('Minyak',this)">
+      🫗 Minyak
+    </button>
 
-      <a class="order-btn"
-         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Beras%201%20Liter%20seharga%20Rp13.000."
-         target="_blank">
-         Pesan via WhatsApp
-      </a>
-    </div>
+    <button
+      onclick="setCategory('Gula',this)">
+      🍬 Gula
+    </button>
 
-    <div class="product">
-      <div class="emoji">🫗</div>
-      <h3>Minyak Goreng 1 Liter</h3>
-      <div class="price">Rp20.000</div>
-      <div class="stock">Stok: 300</div>
+    <button
+      onclick="setCategory('Telur',this)">
+      🥚 Telur
+    </button>
 
-      <a class="order-btn"
-         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Minyak%20Goreng%201%20Liter%20seharga%20Rp20.000."
-         target="_blank">
-         Pesan via WhatsApp
-      </a>
-    </div>
-
-    <div class="product">
-      <div class="emoji">🍬</div>
-      <h3>Gula 1 Kg</h3>
-      <div class="price">Rp17.000</div>
-      <div class="stock">Stok: 15</div>
-
-      <a class="order-btn"
-         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Gula%201%20Kg%20seharga%20Rp17.000."
-         target="_blank">
-         Pesan via WhatsApp
-      </a>
-    </div>
-
-    <div class="product">
-      <div class="emoji">🥚</div>
-      <h3>Telur 1 Kg</h3>
-      <div class="price">Rp30.000</div>
-      <div class="stock">Stok: 12</div>
-
-      <a class="order-btn"
-         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Telur%201%20Kg%20seharga%20Rp30.000."
-         target="_blank">
-         Pesan via WhatsApp
-      </a>
-    </div>
-
-    <div class="product">
-      <div class="emoji">🍜</div>
-      <h3>Mi Instan</h3>
-      <div class="price">Rp3.500</div>
-      <div class="stock">Stok: 50</div>
-
-      <a class="order-btn"
-         href="https://wa.me/6283897619776?text=Halo%20Toko%20Sembako%20Hj%20Heni,%20saya%20ingin%20memesan%20Mi%20Instan%20seharga%20Rp3.500."
-         target="_blank">
-         Pesan via WhatsApp
-      </a>
-    </div>
+    <button
+      onclick="setCategory('Mie',this)">
+      🍜 Mi
+    </button>
 
   </div>
 
-  <div class="contact">
-    <h2>📞 Hubungi Kami</h2>
-    <p>Untuk pemesanan dan informasi produk</p>
 
-    <a class="whatsapp"
-       href="https://wa.me/6283897619776"
-       target="_blank">
-       💬 Chat WhatsApp
-    </a>
+  <div
+    id="products"
+    class="products">
+  </div>
+
+</main>
+
+
+<div class="cart-bar">
+
+  <div>
+    <div class="cart-count">
+      🛒 <span id="cartCount">0</span> barang
+    </div>
+
+    <div
+      id="cartTotal"
+      class="cart-total">
+      Rp0
+    </div>
+  </div>
+
+  <button
+    class="checkout"
+    onclick="openCheckout()">
+
+    Checkout
+
+  </button>
+
+</div>
+
+
+<div
+  id="modal"
+  class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>🧾 Pesanan</h2>
+
+      <button
+        class="close"
+        onclick="closeCheckout()">
+        ×
+      </button>
+
+    </div>
+
+
+    <div id="cartList"></div>
+
+
+    <div class="form-group">
+
+      <label>Nama pelanggan</label>
+
+      <input
+        id="customerName"
+        placeholder="Masukkan nama">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Nomor WhatsApp</label>
+
+      <input
+        id="customerPhone"
+        type="tel"
+        placeholder="08123456789">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Metode menerima barang</label>
+
+      <div class="delivery">
+
+        <label
+          id="delivery"
+          class="selected">
+
+          <input
+            type="radio"
+            name="method"
+            value="Diantar"
+            checked
+            onchange="changeMethod(this)">
+
+          🚚 Diantar
+
+        </label>
+
+
+        <label id="pickup">
+
+          <input
+            type="radio"
+            name="method"
+            value="Ambil Sendiri"
+            onchange="changeMethod(this)">
+
+          🏪 Ambil Sendiri
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="addressBox"
+      class="form-group">
+
+      <label>Alamat pengantaran</label>
+
+      <textarea
+        id="customerAddress"
+        placeholder="Masukkan alamat lengkap">
+      </textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Catatan pesanan</label>
+
+      <textarea
+        id="note"
+        placeholder="Contoh: dikirim sore hari">
+      </textarea>
+
+    </div>
+
+
+    <div
+      id="summary"
+      class="summary">
+    </div>
+
+
+    <button
+      class="whatsapp"
+      onclick="sendOrder()">
+
+      💬 Kirim Pesanan ke WhatsApp
+
+    </button>
+
   </div>
 
 </div>
 
-<footer>
-  © 2026 Toko Sembako Hj Heni
+
+<footer class="footer">
+
+  <strong>Toko Sembako Hj Heni</strong>
+
+  <br>
+
+  Jln Raya Labuan KM.12,
+  Cipeucang, Pandeglang
+
 </footer>
 
+
+<script>
+
+const store = {
+
+  name:"Toko Sembako Hj Heni",
+
+  whatsapp:"6283897619776"
+
+};
+
+
+const products = [
+
+  {
+    id:1,
+    name:"Beras 1 Liter",
+    price:13000,
+    stock:25,
+    unit:"kg",
+    category:"Beras",
+    icon:"🍚"
+  },
+
+  {
+    id:2,
+    name:"Minyak Goreng 1 Liter",
+    price:20000,
+    stock:300,
+    unit:"pcs",
+    category:"Minyak",
+    icon:"🫗"
+  },
+
+  {
+    id:3,
+    name:"Gula 1 Kg",
+    price:17000,
+    stock:15,
+    unit:"pcs",
+    category:"Gula",
+    icon:"🍬"
+  },
+
+  {
+    id:4,
+    name:"Telur 1 Kg",
+    price:30000,
+    stock:12,
+    unit:"kg",
+    category:"Telur",
+    icon:"🥚"
+  },
+
+  {
+    id:5,
+    name:"Mi Instan",
+    price:3500,
+    stock:50,
+    unit:"pcs",
+    category:"Mie",
+    icon:"🍜"
+  }
+
+];
+
+
+let cart = {};
+
+let selectedCategory = "Semua";
+
+
+function rupiah(number){
+
+  return "Rp" +
+  Number(number).toLocaleString("id-ID");
+
+}
+
+
+function setCategory(category,button){
+
+  selectedCategory = category;
+
+  document
+    .querySelectorAll(".categories button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  renderProducts();
+
+}
+
+
+function renderProducts(){
+
+  const keyword =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const container =
+    document.getElementById("products");
+
+
+  const filtered =
+    products.filter(product=>{
+
+      const searchMatch =
+        product.name
+          .toLowerCase()
+          .includes(keyword);
+
+      const categoryMatch =
+        selectedCategory === "Semua" ||
+        product.category === selectedCategory;
+
+      return searchMatch && categoryMatch;
+
+    });
+
+
+  container.innerHTML="";
+
+
+  if(filtered.length===0){
+
+    container.innerHTML=`
+
+      <div class="empty">
+
+        🔎<br><br>
+
+        Produk tidak ditemukan.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  filtered.forEach(product=>{
+
+    const quantity =
+      cart[product.id] || 0;
+
+
+    const max =
+      quantity >= product.stock;
+
+
+    container.innerHTML += `
+
+      <div class="product">
+
+        <div class="product-icon">
+          ${product.icon}
+        </div>
+
+        <h3>
+          ${product.name}
+        </h3>
+
+        <div class="price">
+          ${rupiah(product.price)}
+        </div>
+
+        <div class="stock">
+          Stok: ${product.stock} ${product.unit}
+        </div>
+
+
+        <div class="quantity">
+
+          <button
+            onclick="changeQty(
+              ${product.id},
+              -1
+            )">
+            −
+          </button>
+
+          <span>
+            ${quantity}
+          </span>
+
+          <button
+            onclick="changeQty(
+              ${product.id},
+              1
+            )">
+            +
+          </button>
+
+        </div>
+
+
+        <button
+          class="add"
+          onclick="addToCart(${product.id})"
+          ${max ? "disabled" : ""}>
+
+          ${max
+            ? "Stok Maksimal"
+            : "🛒 Tambah"}
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+function addToCart(id){
+
+  const product =
+    products.find(p=>p.id===id);
+
+  if(!product)return;
+
+
+  const current =
+    cart[id] || 0;
+
+
+  if(current >= product.stock){
+
+    alert("Jumlah melebihi stok.");
+
+    return;
+
+  }
+
+
+  cart[id]=current+1;
+
+  updateCart();
+
+  renderProducts();
+
+}
+
+
+function changeQty(id,change){
+
+  const product =
+    products.find(p=>p.id===id);
+
+  if(!product)return;
+
+
+  const current =
+    cart[id] || 0;
+
+
+  const next =
+    current + change;
+
+
+  if(next < 0)return;
+
+
+  if(next > product.stock){
+
+    alert("Jumlah melebihi stok.");
+
+    return;
+
+  }
+
+
+  if(next===0){
+
+    delete cart[id];
+
+  }else{
+
+    cart[id]=next;
+
+  }
+
+
+  updateCart();
+
+  renderProducts();
+
+}
+
+
+function updateCart(){
+
+  let count=0;
+
+  let total=0;
+
+
+  products.forEach(product=>{
+
+    const quantity =
+      cart[product.id] || 0;
+
+    count += quantity;
+
+    total +=
+      quantity * product.price;
+
+  });
+
+
+  document
+    .getElementById("cartCount")
+    .textContent=count;
+
+
+  document
+    .getElementById("cartTotal")
+    .textContent=rupiah(total);
+
+}
+
+
+function getItems(){
+
+  return products.filter(
+    product =>
+      (cart[product.id] || 0) > 0
+  );
+
+}
+
+
+function openCheckout(){
+
+  if(getItems().length===0){
+
+    alert("Keranjang masih kosong.");
+
+    return;
+
+  }
+
+
+  renderCheckout();
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+function closeCheckout(){
+
+  document
+    .getElementById("modal")
+    .classList.remove("show");
+
+}
+
+
+function renderCheckout(){
+
+  const items =
+    getItems();
+
+
+  let html="";
+
+  let total=0;
+
+
+  items.forEach(product=>{
+
+    const quantity =
+      cart[product.id];
+
+    const subtotal =
+      quantity * product.price;
+
+    total += subtotal;
+
+
+    html += `
+
+      <div class="cart-item">
+
+        <div class="cart-item-info">
+
+          <strong>
+            ${product.name}
+          </strong>
+
+          <small>
+            ${quantity} ×
+            ${rupiah(product.price)}
+          </small>
+
+        </div>
+
+
+        <div class="cart-controls">
+
+          <button
+            onclick="
+              changeQty(${product.id},-1);
+              renderCheckout();
+            ">
+            −
+          </button>
+
+          <b>
+            ${quantity}
+          </b>
+
+          <button
+            onclick="
+              changeQty(${product.id},1);
+              renderCheckout();
+            ">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  document
+    .getElementById("cartList")
+    .innerHTML=html;
+
+
+  document
+    .getElementById("summary")
+    .innerHTML=`
+
+      <div class="summary-row">
+
+        <span>
+          Jumlah barang
+        </span>
+
+        <b>
+          ${items.reduce(
+            (sum,p)=>
+              sum + cart[p.id],0
+          )}
+        </b>
+
+      </div>
+
+
+      <div class="summary-row summary-total">
+
+        <span>
+          Total
+        </span>
+
+        <strong>
+          ${rupiah(total)}
+        </strong>
+
+      </div>
+
+    `;
+
+}
+
+
+function changeMethod(input){
+
+  document
+    .getElementById("delivery")
+    .classList.remove("selected");
+
+  document
+    .getElementById("pickup")
+    .classList.remove("selected");
+
+
+  input
+    .parentElement
+    .classList.add("selected");
+
+
+  const box =
+    document.getElementById("addressBox");
+
+
+  if(input.value==="Diantar"){
+
+    box.style.display="block";
+
+  }else{
+
+    box.style.display="none";
+
+  }
+
+}
+
+
+function getMethod(){
+
+  const selected =
+    document.querySelector(
+      'input[name="method"]:checked'
+    );
+
+  return selected
+    ? selected.value
+    : "Diantar";
+
+}
+
+
+function sendOrder(){
+
+  const items =
+    getItems();
+
+
+  if(items.length===0){
+
+    alert("Keranjang masih kosong.");
+
+    return;
+
+  }
+
+
+  const name =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("customerPhone")
+      .value
+      .trim();
+
+
+  const method =
+    getMethod();
+
+
+  const address =
+    document
+      .getElementById("customerAddress")
+      .value
+      .trim();
+
+
+  const note =
+    document
+      .getElementById("note")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert("Masukkan nama pelanggan.");
+
+    return;
+
+  }
+
+
+  if(!phone){
+
+    alert("Masukkan nomor WhatsApp.");
+
+    return;
+
+  }
+
+
+  if(
+    method==="Diantar" &&
+    !address
+  ){
+
+    alert("Masukkan alamat pengantaran.");
+
+    return;
+
+  }
+
+
+  let total=0;
+
+
+  let message =
+`Halo ${store.name} 👋
+
+Saya ingin memesan:
+
+Nama: ${name}
+WhatsApp: ${phone}
+
+DAFTAR PESANAN:
+`;
+
+
+  items.forEach(product=>{
+
+    const quantity =
+      cart[product.id];
+
+    const subtotal =
+      quantity * product.price;
+
+    total += subtotal;
+
+
+    message +=
+`\n• ${product.name}
+  ${quantity} × ${rupiah(product.price)}
+  Subtotal: ${rupiah(subtotal)}
+`;
+
+  });
+
+
+  message +=
+`\nTOTAL: ${rupiah(total)}
+
+Metode: ${method}
+`;
+
+
+  if(method==="Diantar"){
+
+    message +=
+`\nAlamat:
+${address}
+`;
+
+  }
+
+
+  if(note){
+
+    message +=
+`\nCatatan:
+${note}
+`;
+
+  }
+
+
+  message +=
+`\nMohon konfirmasi pesanan saya.
+Terima kasih 🙏`;
+
+
+  const url =
+    "https://wa.me/" +
+    store.whatsapp +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+  window.open(url,"_blank");
+
+}
+
+
+document
+  .getElementById("modal")
+  .addEventListener("click",function(e){
+
+    if(e.target===this){
+
+      closeCheckout();
+
+    }
+
+  });
+
+
+renderProducts();
+
+updateCart();
+
+</script>
+
 </body>
-</html>
+  </html>
