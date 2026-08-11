@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Toko Sembako Hj Heni</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  color:#222;
+}
+
+header{
+  background:#166534;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+header h1{
+  font-size:23px;
+  margin-bottom:6px;
+}
+
+header p{
+  font-size:14px;
+  opacity:.9;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:18px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.card h2{
+  margin-bottom:15px;
+  color:#166534;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  margin-bottom:10px;
+  font-size:15px;
+}
+
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 15px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.btn-tambah{
+  background:#16a34a;
+  color:white;
+  width:100%;
+}
+
+.btn-edit{
+  background:#2563eb;
+  color:white;
+  margin-right:5px;
+}
+
+.btn-hapus{
+  background:#dc2626;
+  color:white;
+}
+
+.product{
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.product h3{
+  margin-bottom:8px;
+}
+
+.price{
+  color:#15803d;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.stock{
+  color:#555;
+  margin-bottom:12px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.stat{
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  color:#166534;
+  margin-bottom:5px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  padding:20px;
+  z-index:10;
+}
+
+.modal-box{
+  background:white;
+  max-width:500px;
+  margin:50px auto;
+  padding:20px;
+  border-radius:15px;
+}
+
+.modal-box h2{
+  margin-bottom:15px;
+  color:#166534;
+}
+
+.btn-simpan{
+  background:#16a34a;
+  color:white;
+  width:100%;
+  margin-top:5px;
+}
+
+.btn-batal{
+  background:#6b7280;
+  color:white;
+  width:100%;
+  margin-top:8px;
+}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .product button{
+    width:100%;
+    margin-top:5px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏪 Toko Sembako Hj Heni</h1>
+  <p>Dashboard Pemilik Toko</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong id="jumlahProduk">0</strong>
+      Produk
+    </div>
+
+    <div class="stat">
+      <strong id="jumlahStok">0</strong>
+      Total Stok
+    </div>
+
+    <div class="stat">
+      <strong id="nilaiStok">Rp0</strong>
+      Nilai Stok
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h2>➕ Tambah Produk</h2>
+
+    <input
+      type="text"
+      id="namaProduk"
+      placeholder="Nama produk"
+    >
+
+    <input
+      type="number"
+      id="hargaProduk"
+      placeholder="Harga produk"
+    >
+
+    <input
+      type="number"
+      id="stokProduk"
+      placeholder="Jumlah stok"
+    >
+
+    <input
+      type="text"
+      id="satuanProduk"
+      placeholder="Satuan, contoh: kg, liter, pcs"
+    >
+
+    <button class="btn-tambah" onclick="tambahProduk()">
+      ➕ Tambahkan Produk
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📦 Daftar Produk</h2>
+
+    <div id="daftarProduk"></div>
+
+  </div>
+
+</div>
+
+<div class="modal" id="modalEdit">
+
+  <div class="modal-box">
+
+    <h2>✏️ Edit Produk</h2>
+
+    <input
+      type="text"
+      id="editNama"
+      placeholder="Nama produk"
+    >
+
+    <input
+      type="number"
+      id="editHarga"
+      placeholder="Harga"
+    >
+
+    <input
+      type="number"
+      id="editStok"
+      placeholder="Stok"
+    >
+
+    <input
+      type="text"
+      id="editSatuan"
+      placeholder="Satuan"
+    >
+
+    <button class="btn-simpan" onclick="simpanEdit()">
+      💾 Simpan Perubahan
+    </button>
+
+    <button class="btn-batal" onclick="tutupEdit()">
+      Batal
+    </button>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Toko Sembako Hj Heni
+</footer>
+
+<script>
+
+let produk = JSON.parse(localStorage.getItem("produkSembako"));
+
+if(!produk){
+
+  produk = [
+
+    {
+      nama:"Beras 1 Liter",
+      harga:13000,
+      stok:25,
+      satuan:"liter"
+    },
+
+    {
+      nama:"Minyak Goreng 1 Liter",
+      harga:20000,
+      stok:300,
+      satuan:"liter"
+    },
+
+    {
+      nama:"Gula 1 Kg",
+      harga:17000,
+      stok:15,
+      satuan:"kg"
+    },
+
+    {
+      nama:"Telur 1 Kg",
+      harga:30000,
+      stok:12,
+      satuan:"kg"
+    },
+
+    {
+      nama:"Mi Instan",
+      harga:3500,
+      stok:50,
+      satuan:"pcs"
+    }
+
+  ];
+
+  simpanData();
+
+}
+
+let indexEdit = -1;
+
+function rupiah(angka){
+
+  return "Rp" + Number(angka).toLocaleString("id-ID");
+
+}
+
+function simpanData(){
+
+  localStorage.setItem(
+    "produkSembako",
+    JSON.stringify(produk)
+  );
+
+}
+
+function tampilkanProduk(){
+
+  const daftar =
+    document.getElementById("daftarProduk");
+
+  daftar.innerHTML = "";
+
+  if(produk.length === 0){
+
+    daftar.innerHTML =
+      '<div class="empty">Belum ada produk.</div>';
+
+    updateStatistik();
+
+    return;
+
+  }
+
+  produk.forEach((item,index)=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className = "product";
+
+    div.innerHTML = `
+
+      <h3>${item.nama}</h3>
+
+      <div class="price">
+        ${rupiah(item.harga)}
+      </div>
+
+      <div class="stock">
+        Stok: ${item.stok} ${item.satuan}
+      </div>
+
+      <button
+        class="btn-edit"
+        onclick="editProduk(${index})">
+        ✏️ Edit
+      </button>
+
+      <button
+        class="btn-hapus"
+        onclick="hapusProduk(${index})">
+        🗑️ Hapus
+      </button>
+
+    `;
+
+    daftar.appendChild(div);
+
+  });
+
+  updateStatistik();
+
+}
+
+function tambahProduk(){
+
+  const nama =
+    document.getElementById("namaProduk").value.trim();
+
+  const harga =
+    Number(document.getElementById("hargaProduk").value);
+
+  const stok =
+    Number(document.getElementById("stokProduk").value);
+
+  const satuan =
+    document.getElementById("satuanProduk").value.trim();
+
+  if(!nama || !harga || stok < 0 || !satuan){
+
+    alert("Mohon isi semua data produk.");
+
+    return;
+
+  }
+
+  produk.push({
+
+    nama:nama,
+    harga:harga,
+    stok:stok,
+    satuan:satuan
+
+  });
+
+  simpanData();
+
+  document.getElementById("namaProduk").value="";
+  document.getElementById("hargaProduk").value="";
+  document.getElementById("stokProduk").value="";
+  document.getElementById("satuanProduk").value="";
+
+  tampilkanProduk();
+
+  alert("Produk berhasil ditambahkan.");
+
+}
+
+function editProduk(index){
+
+  indexEdit = index;
+
+  const item = produk[index];
+
+  document.getElementById("editNama").value =
+    item.nama;
+
+  document.getElementById("editHarga").value =
+    item.harga;
+
+  document.getElementById("editStok").value =
+    item.stok;
+
+  document.getElementById("editSatuan").value =
+    item.satuan;
+
+  document.getElementById("modalEdit").style.display =
+    "block";
+
+}
+
+function simpanEdit(){
+
+  if(indexEdit === -1) return;
+
+  const nama =
+    document.getElementById("editNama").value.trim();
+
+  const harga =
+    Number(document.getElementById("editHarga").value);
+
+  const stok =
+    Number(document.getElementById("editStok").value);
+
+  const satuan =
+    document.getElementById("editSatuan").value.trim();
+
+  if(!nama || !harga || stok < 0 || !satuan){
+
+    alert("Mohon isi semua data.");
+
+    return;
+
+  }
+
+  produk[indexEdit] = {
+
+    nama:nama,
+    harga:harga,
+    stok:stok,
+    satuan:satuan
+
+  };
+
+  simpanData();
+
+  tutupEdit();
+
+  tampilkanProduk();
+
+  alert("Produk berhasil diperbarui.");
+
+}
+
+function tutupEdit(){
+
+  document.getElementById("modalEdit").style.display =
+    "none";
+
+  indexEdit = -1;
+
+}
+
+function hapusProduk(index){
+
+  const yakin =
+    confirm(
+      "Yakin ingin menghapus produk " +
+      produk[index].nama +
+      "?"
+    );
+
+  if(!yakin) return;
+
+  produk.splice(index,1);
+
+  simpanData();
+
+  tampilkanProduk();
+
+}
+
+function updateStatistik(){
+
+  document.getElementById("jumlahProduk").textContent =
+    produk.length;
+
+  let stokTotal = 0;
+  let nilai = 0;
+
+  produk.forEach(item=>{
+
+    stokTotal += Number(item.stok);
+
+    nilai +=
+      Number(item.harga) *
+      Number(item.stok);
+
+  });
+
+  document.getElementById("jumlahStok").textContent =
+    stokTotal;
+
+  document.getElementById("nilaiStok").textContent =
+    rupiah(nilai);
+
+}
+
+tampilkanProduk();
+
+</script>
+
+</body>
+</html>
