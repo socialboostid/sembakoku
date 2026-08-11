@@ -313,7 +313,17 @@ footer{
 <footer>
   © 2026 Toko Sembako Hj Heni
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = "https://cmdktosufdhbiziacrio.supabase.co";
+const SUPABASE_KEY = "sb_publishable_hh2tGhNKs-cq5E2ELjjU7w_aej9SLma";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
 <script>
 
 let produk = JSON.parse(localStorage.getItem("produkSembako"));
@@ -371,13 +381,44 @@ function rupiah(angka){
 
 }
 
-function simpanData(){
+async function simpanData(){
+
+  const { error: hapusError } = await supabaseClient
+    .from("products")
+    .delete()
+    .neq("id", 0);
+
+  if(hapusError){
+    console.error(hapusError);
+    alert("Gagal menghapus data lama: " + hapusError.message);
+    return;
+  }
+
+  const dataProduk = produk.map(item => ({
+    name: item.nama,
+    price: Number(item.harga) || 0,
+    stock: Number(item.stok) || 0,
+    image_url: item.gambar || item.image_url || "",
+    description: item.deskripsi || "",
+    active: true
+  }));
+
+  const { error: insertError } = await supabaseClient
+    .from("products")
+    .insert(dataProduk);
+
+  if(insertError){
+    console.error(insertError);
+    alert("Gagal menyimpan ke Supabase: " + insertError.message);
+    return;
+  }
 
   localStorage.setItem(
     "produkSembako",
     JSON.stringify(produk)
   );
 
+  alert("Produk berhasil disimpan ke Supabase ✅");
 }
 
 function tampilkanProduk(){
