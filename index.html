@@ -1351,7 +1351,7 @@ async function ambilProdukSupabase() {
 
   const { data, error } = await supabaseClient
     .from("products")
-    .select("id, name, price, stock, image_url, description, active")
+    .select("id, name, price, stock, satuan, image_url, description, active")
     .eq("active", true)
     .order("id", { ascending: true });
 
@@ -1371,19 +1371,8 @@ async function ambilProdukSupabase() {
   let icon = "🛒";
 
   const nama = (item.name || "").toLowerCase();
-    let satuan = "pcs";
-
-if (nama.includes("beras")) {
-  satuan = "kg";
-} else if (nama.includes("minyak")) {
-  satuan = "liter";
-} else if (nama.includes("gula")) {
-  satuan = "kg";
-} else if (nama.includes("telur")) {
-  satuan = "kg";
-} else if (nama.includes("mie") || nama.includes("mi ")) {
-  satuan = "pcs";
-}
+    
+   const satuan = item.satuan || "pcs";
     
   if (nama.includes("beras")) {
     kategori = "Beras";
