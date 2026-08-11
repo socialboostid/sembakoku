@@ -846,7 +846,47 @@ button,input,textarea{
       💬 Kirim Pesanan ke WhatsApp
 
     </button>
+   <!-- PEMBAYARAN -->
+<div class="payment-box">
 
+  <h3>💳 Pembayaran</h3>
+
+  <p class="payment-info">
+    Silakan pilih metode pembayaran setelah pesanan dikirim.
+  </p>
+
+  <div class="payment-method">
+    <div class="payment-icon">📱</div>
+    <div>
+      <strong>QRIS</strong>
+      <span>Scan QR untuk pembayaran</span>
+    </div>
+  </div>
+
+  <div class="payment-method">
+    <div class="payment-icon">💙</div>
+    <div>
+      <strong>DANA</strong>
+      <span>Nomor DANA: ISI NOMOR DANA</span>
+    </div>
+  </div>
+
+  <div class="payment-method">
+    <div class="payment-icon">🏦</div>
+    <div>
+      <strong>SeaBank</strong>
+      <span>Nomor rekening: ISI NOMOR SEABANK</span>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="payment-confirm"
+    onclick="confirmPayment()">
+    ✅ Saya Sudah Bayar
+  </button>
+
+</div>
   </div>
 
 </div>
@@ -865,6 +905,27 @@ button,input,textarea{
 
 
 <script>
+
+  function confirmPayment(){
+
+  const name = document
+    .getElementById("customerName")
+    .value
+    .trim();
+
+  if(!name){
+    alert("Silakan isi nama pelanggan terlebih dahulu.");
+    return;
+  }
+
+  alert(
+    "Terima kasih " + name +
+    " 🙏\n\n" +
+    "Konfirmasi pembayaran sudah diterima.\n" +
+    "Silakan kirim bukti pembayaran melalui WhatsApp."
+  );
+
+}
 
 const store = {
 
