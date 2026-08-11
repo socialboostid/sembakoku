@@ -1355,7 +1355,40 @@ const supabaseClient = supabase.createClient(
   SUPABASE_KEY
 );
 
-console.log("Supabase berhasil terhubung");
+async function ambilProdukSupabase() {
+
+  const { data, error } = await supabaseClient
+    .from("products")
+    .select("*")
+    .eq("active", true)
+    .order("id", { ascending: true });
+
+  if (error) {
+    console.error("Gagal mengambil produk:", error);
+    return;
+  }
+
+  if (data) {
+
+    const produkBaru = data.map(item => ({
+      nama: item.name,
+      harga: Number(item.price) || 0,
+      stok: Number(item.stock) || 0,
+      satuan: item.unit || "pcs",
+      gambar: item.image_url || "",
+      deskripsi: item.description || ""
+    }));
+
+    localStorage.setItem(
+      "produkSembako",
+      JSON.stringify(produkBaru)
+    );
+
+    location.reload();
+  }
+}
+
+ambilProdukSupabase();
 </script>
 </body>
   </html>
