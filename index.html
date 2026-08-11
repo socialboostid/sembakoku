@@ -1344,6 +1344,18 @@ renderProducts();
 updateCart();
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = "https://cmdktosufdhbiziacrio.supabase.co";
+const SUPABASE_KEY = "sb_publishable_hh2tGhNKs-cq5E2ELjjU7w_aej9SLma";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+console.log("Supabase berhasil terhubung");
+</script>
 </body>
   </html>
