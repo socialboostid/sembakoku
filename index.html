@@ -1371,7 +1371,20 @@ async function ambilProdukSupabase() {
   let icon = "🛒";
 
   const nama = (item.name || "").toLowerCase();
+    let satuan = "pcs";
 
+if (nama.includes("beras")) {
+  satuan = "kg";
+} else if (nama.includes("minyak")) {
+  satuan = "liter";
+} else if (nama.includes("gula")) {
+  satuan = "kg";
+} else if (nama.includes("telur")) {
+  satuan = "kg";
+} else if (nama.includes("mie") || nama.includes("mi ")) {
+  satuan = "pcs";
+}
+    
   if (nama.includes("beras")) {
     kategori = "Beras";
     icon = "🍚";
@@ -1394,7 +1407,7 @@ async function ambilProdukSupabase() {
     name: item.name,
     harga: Number(item.price) || 0,
     stok: Number(item.stock) || 0,
-    satuan: "pcs",
+    satuan: satuan,
     category: kategori,
     icon: icon,
     gambar: item.image_url || "",
