@@ -1348,7 +1348,7 @@ updateCart();
 
 <script>
 const SUPABASE_URL = "https://cmdktosufdhbiziacrio.supabase.co";
-const SUPABASE_KEY = "sb_publishable_hh2tGhNKs-cq5E2ELjjU7w_aej9SLma";
+const SUPABASE_KEY = "sb_publishable_hh2tGhNKs-cq5E2EljU7w_aej9SLma";
 
 const supabaseClient = supabase.createClient(
   SUPABASE_URL,
@@ -1359,7 +1359,7 @@ async function ambilProdukSupabase() {
 
   const { data, error } = await supabaseClient
     .from("products")
-    .select("*")
+    .select("id, name, price, stock, image_url, description, active")
     .eq("active", true)
     .order("id", { ascending: true });
 
@@ -1368,25 +1368,36 @@ async function ambilProdukSupabase() {
     return;
   }
 
-  if (data) {
-
-    const produkBaru = data.map(item => ({
-      nama: item.name,
-      harga: Number(item.price) || 0,
-      stok: Number(item.stock) || 0,
-      satuan: item.unit || "pcs",
-      gambar: item.image_url || "",
-      deskripsi: item.description || ""
-    }));
-
-    localStorage.setItem(
-  "produkSembako",
-  JSON.stringify(produkBaru)
-);
+  if (!data || data.length === 0) {
+    console.log("Tidak ada produk aktif di Supabase.");
+    return;
   }
+
+  const produkBaru = data.map(item => ({
+    nama: item.name,
+    harga: Number(item.price) || 0,
+    stok: Number(item.stock) || 0,
+
+    // Tidak mengambil item.unit karena kolom tersebut tidak ada
+    satuan: "pcs",
+
+    gambar: item.image_url || "",
+    deskripsi: item.description || ""
+  }));
+
+  localStorage.setItem(
+    "produkSembako",
+    JSON.stringify(produkBaru)
+  );
+
+  // Update tampilan tanpa reload halaman
+  renderProducts();
+  updateCart();
+
+  console.log("Produk Supabase berhasil dimuat:", produkBaru);
 }
 
-ambilProdukSupabase();
+ambillProdukSupabase();
 </script>
 </body>
   </html>
