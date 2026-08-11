@@ -649,7 +649,7 @@ const store = {
 };
 
 
-const products = [
+let products = [
 
   {
     id:1,
@@ -1373,25 +1373,55 @@ async function ambilProdukSupabase() {
     return;
   }
 
-  const produkBaru = data.map(item => ({
-    nama: item.name,
+  const produkBaru = data.map(item => {
+
+  let kategori = "Lainnya";
+  let icon = "🛒";
+
+  const nama = (item.name || "").toLowerCase();
+
+  if (nama.includes("beras")) {
+    kategori = "Beras";
+    icon = "🍚";
+  } else if (nama.includes("minyak")) {
+    kategori = "Minyak";
+    icon = "🛢️";
+  } else if (nama.includes("gula")) {
+    kategori = "Gula";
+    icon = "🍬";
+  } else if (nama.includes("telur")) {
+    kategori = "Telur";
+    icon = "🥚";
+  } else if (nama.includes("mie") || nama.includes("mi ")) {
+    kategori = "Mie";
+    icon = "🍜";
+  }
+
+  return {
+    id: item.id,
+    name: item.name,
     harga: Number(item.price) || 0,
     stok: Number(item.stock) || 0,
-
-    // Tidak mengambil item.unit karena kolom tersebut tidak ada
     satuan: "pcs",
-
+    category: kategori,
+    icon: icon,
     gambar: item.image_url || "",
     deskripsi: item.description || ""
-  }));
+  };
 
-  localStorage.setItem(
-    "produkSembako",
-    JSON.stringify(produkBaru)
-  );
+});
 
-  renderProducts();
-  updateCart();
+products = produkBaru;
+
+localStorage.setItem(
+  "produkSembako",
+  JSON.stringify(produkBaru)
+);
+
+renderProducts();
+updateCart();
+
+console.log("Produk dari Supabase:", products);
 
   console.log("Produk Supabase berhasil dimuat:", produkBaru);
 }
