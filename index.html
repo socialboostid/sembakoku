@@ -18,6 +18,130 @@
 .hero{color:#fff;background:linear-gradient(135deg,#087443 0%,#05b954 58%,#00a84f 100%);border-radius:0 0 48px 48px;padding:28px 20px 34px;box-shadow:0 10px 30px rgba(0,120,65,.20)}.hero-inner{max-width:1100px;margin:auto}.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.16);padding:8px 13px;border-radius:999px;font-size:13px;font-weight:700}.hero h1{font-size:clamp(28px,7vw,48px);line-height:1.05;margin:16px 0 10px}.hero p{margin:7px 0;font-size:16px;opacity:.96}.info{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.info span{background:rgba(255,255,255,.14);padding:9px 12px;border-radius:12px}.wrap{max-width:1100px;margin:auto;padding:22px 16px}.search{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:13px 16px;box-shadow:var(--shadow)}.search input{width:100%;border:0;outline:0;background:transparent;font-size:16px;color:var(--text)}.categories{display:flex;gap:9px;overflow-x:auto;padding:15px 0 5px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.cat{white-space:nowrap;padding:11px 17px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:700;color:var(--text)}.cat.active{background:var(--green);color:#fff;border-color:var(--green)}.status{margin:18px 0 12px;color:var(--muted);font-weight:700}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}.pic{height:190px;background:#edf4f0;display:flex;align-items:center;justify-content:center;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover}.noimg{font-size:58px}.body{padding:16px;display:flex;flex-direction:column;flex:1}.name{font-size:19px;font-weight:800;margin:0 0 6px}.desc{font-size:13px;color:var(--muted);min-height:38px;margin-bottom:8px}.price{font-size:21px;font-weight:900;color:#009b4b}.unit{font-size:13px;color:var(--muted);font-weight:700}.stock{font-size:13px;color:var(--muted);margin:8px 0 13px}.add{width:100%;padding:12px;border-radius:14px;background:var(--green);color:#fff;font-weight:800;font-size:15px}.add:disabled{background:#b8c2bd;cursor:not-allowed}.qtyrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.qbtn{width:34px;height:34px;border-radius:10px;background:#eaf5ef;color:#087443;font-weight:900}.qty{min-width:30px;text-align:center;font-weight:800}.empty{background:var(--card);border:1px dashed var(--line);border-radius:22px;padding:45px 20px;text-align:center;color:var(--muted);grid-column:1/-1}.bottom{position:fixed;z-index:20;left:14px;right:14px;bottom:14px;max-width:1070px;margin:auto;background:#0c281c;color:#fff;border-radius:24px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 18px 50px rgba(0,0,0,.28)}.total small{display:block;color:#b8c9c0}.total strong{font-size:22px}.checkout{background:var(--green);color:#fff;border-radius:16px;padding:13px 22px;font-weight:900;font-size:16px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:50;display:none;align-items:flex-end;justify-content:center}.modal.show{display:flex}.sheet{width:min(700px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:28px 28px 0 0;padding:20px;color:var(--text)}.sheet h2{margin:0 0 4px}.close{float:right;background:#edf1ef;border-radius:50%;width:38px;height:38px}.form{display:grid;gap:10px;margin-top:15px}label{font-size:13px;font-weight:800;color:#526159}input,select,textarea{width:100%;padding:13px;border:1px solid #dbe4df;border-radius:13px;outline:0;background:#fff;color:#17231d}textarea{min-height:80px;resize:vertical}.pay{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:8px 0}.pay label{display:block;border:1px solid #dbe4df;padding:12px;border-radius:14px;cursor:pointer}.pay input{width:auto;margin-right:7px}.paybox{margin-top:10px;background:#f3f8f5;border-radius:18px;padding:14px}.qris{display:block;width:min(280px,100%);max-height:280px;object-fit:contain;margin:10px auto;border-radius:16px;background:#fff}.orderitems{background:#f7faf8;border-radius:16px;padding:12px;margin:12px 0}.itemline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #e7eeea;font-size:14px}.itemline:last-child{border-bottom:0}.send{width:100%;background:#12a954;color:#fff;padding:15px;border-radius:15px;font-weight:900;margin-top:10px}.note{font-size:12px;color:#68736d;line-height:1.5}footer{text-align:center;color:var(--muted);padding:25px 16px}.toast{position:fixed;z-index:80;left:50%;bottom:95px;transform:translateX(-50%);background:#10251b;color:#fff;padding:12px 16px;border-radius:999px;display:none;font-size:14px;box-shadow:var(--shadow)}.toast.show{display:block}
 .install{position:fixed;z-index:70;right:14px;bottom:92px;background:#fff;color:#087443;border:1px solid #d8e6dd;border-radius:15px;padding:11px 14px;font-weight:900;box-shadow:0 12px 35px #0002;display:none}.install.show{display:block}.install button{background:transparent;color:#087443;font-weight:900;margin-left:8px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:680px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.pic{height:150px}.body{padding:13px}.name{font-size:17px}.price{font-size:19px}.hero{border-radius:0 0 38px 38px}.pay{grid-template-columns:1fr 1fr}}@media(max-width:430px){.grid{grid-template-columns:1fr 1fr}.pic{height:130px}.hero h1{font-size:30px}.checkout{padding:12px 16px}.bottom{left:10px;right:10px}}
+
+/* =========================
+   PWA - INSTALL & SPLASH
+   ========================= */
+
+.install-app-btn{
+  position:fixed;
+  right:18px;
+  bottom:92px;
+  z-index:40;
+  display:none;
+  align-items:center;
+  gap:8px;
+  padding:13px 18px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#087443,#08b95a);
+  color:#fff;
+  font-weight:900;
+  font-size:14px;
+  box-shadow:0 10px 30px rgba(0,100,60,.30);
+  animation:installPulse 2s infinite;
+}
+
+.install-app-btn.show{
+  display:flex;
+}
+
+.install-app-btn:active{
+  transform:scale(.96);
+}
+
+@keyframes installPulse{
+  0%,100%{
+    box-shadow:0 10px 30px rgba(0,100,60,.30);
+  }
+  50%{
+    box-shadow:0 10px 35px rgba(8,185,90,.55);
+  }
+}
+
+/* SPLASH SCREEN */
+
+.splash-screen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:linear-gradient(135deg,#087443,#08b95a);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  transition:opacity .5s ease,visibility .5s ease;
+}
+
+.splash-screen.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.splash-logo{
+  width:105px;
+  height:105px;
+  border-radius:28px;
+  background:#fff;
+  padding:10px;
+  box-shadow:0 15px 45px rgba(0,0,0,.25);
+  margin-bottom:22px;
+  animation:splashLogo .8s ease;
+}
+
+.splash-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:20px;
+}
+
+.splash-screen h2{
+  margin:0;
+  font-size:24px;
+  font-weight:900;
+}
+
+.splash-screen p{
+  margin:8px 0 25px;
+  opacity:.9;
+  font-size:14px;
+}
+
+.splash-loading{
+  width:42px;
+  height:42px;
+  border:4px solid rgba(255,255,255,.3);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes splashLogo{
+  from{
+    opacity:0;
+    transform:scale(.7);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@media(max-width:500px){
+  .install-app-btn{
+    right:14px;
+    bottom:90px;
+    padding:12px 15px;
+  }
+}
+  
 </style>
 </head>
 <body>
@@ -57,7 +181,20 @@
 </div></div></div>
 
 <div class="toast" id="toast"></div>
+<!-- TOMBOL INSTALL APLIKASI -->
+<button id="installBtn" class="install-app-btn">
+  📱 Install Aplikasi
+</button>
 
+<!-- SPLASH SCREEN -->
+<div id="splashScreen" class="splash-screen">
+  <div class="splash-logo">
+    <img src="./icon-192.png" alt="Toko Sembako HJ Heni">
+  </div>
+  <h2>TOKO SEMBAKO HJ HENI</h2>
+  <p>Belanja mudah • Cepat • Praktis</p>
+  <div class="splash-loading"></div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://cmdktosufdhbiziacrio.supabase.co";
