@@ -191,24 +191,45 @@ async function loadProducts(){
 function render(){
   const q=document.getElementById("search").value.toLowerCase().trim();
   const list=document.getElementById("list");
-  const rows=products.filter(p=>String(p.name||"").toLowerCase().includes(q));
+  const rows=products.filter(p=>
+    String(p.name||"").toLowerCase().includes(q)
+  );
 
   if(!rows.length){
     list.innerHTML='<div style="text-align:center;padding:25px;color:#777">Belum ada produk.</div>';
   }else{
     list.innerHTML=rows.map(p=>{
       const img=p.image_url||"https://placehold.co/150x150?text=Produk";
+      const id=String(p.id);
+
       return `
       <div class="product">
-        <img src="${esc(img)}" onerror="this.src='https://placehold.co/150x150?text=Produk'">
+        <img src="${esc(img)}"
+             onerror="this.src='https://placehold.co/150x150?text=Produk'">
+
         <div class="info">
           <h3>${esc(p.name)}</h3>
+
           <div class="price">${money(p.price)}</div>
+
           <div>Stok: ${Number(p.stock||0)}</div>
-          <div style="font-size:13px;color:#666;margin-top:3px">${esc(p.description||"")}</div>
+
+          <div style="font-size:13px;color:#666;margin-top:3px">
+            ${esc(p.description||"")}
+          </div>
+
           <div class="actions">
-            <button class="blue" onclick="openEdit(${JSON.stringify(String(p.id))})">✏️ Edit</button>
-            <button class="red" onclick="deleteProduct(${JSON.stringify(String(p.id))})">🗑️ Hapus</button>
+
+            <button class="blue"
+              onclick='openEdit(${JSON.stringify(id)})'>
+              ✏️ Edit
+            </button>
+
+            <button class="red"
+              onclick='deleteProduct(${JSON.stringify(id)})'>
+              🗑️ Hapus
+            </button>
+
           </div>
         </div>
       </div>`;
@@ -216,10 +237,18 @@ function render(){
   }
 
   document.getElementById("totalProduk").textContent=products.length;
-  document.getElementById("totalStok").textContent=products.reduce((a,p)=>a+Number(p.stock||0),0);
-  document.getElementById("nilaiStok").textContent=money(products.reduce((a,p)=>a+Number(p.stock||0)*Number(p.price||0),0));
-}
 
+  document.getElementById("totalStok").textContent=
+    products.reduce((a,p)=>a+Number(p.stock||0),0);
+
+  document.getElementById("nilaiStok").textContent=
+    money(
+      products.reduce(
+        (a,p)=>a+Number(p.stock||0)*Number(p.price||0),
+        0
+      )
+    );
+}
 function previewAdd(e){
   const f=e.target.files[0], img=document.getElementById("addPreview");
   if(!f){img.style.display="none";return;}
