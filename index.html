@@ -1913,6 +1913,13 @@ async function ambilProdukSupabase() {
 
   if (!data || data.length === 0) {
     console.log("Tidak ada produk aktif di Supabase.");
+
+    products = [];
+    localStorage.removeItem("produkSembako");
+
+    renderProducts();
+    updateCart();
+
     return;
   }
 
