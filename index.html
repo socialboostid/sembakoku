@@ -251,6 +251,14 @@ document.getElementById("installBtn").addEventListener("click",async()=>{
 });
 function hideInstall(e){e.stopPropagation();document.getElementById("installBtn").classList.remove("show")}
 window.addEventListener("appinstalled",()=>{document.getElementById("installBtn").classList.remove("show");toast("Aplikasi TOKO SEMBAKO HJ HENI terpasang ✅")});
+// Tutup splash screen setelah halaman siap
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    const splash = document.getElementById("splashScreen");
+    if(splash) splash.classList.add("hide");
+  },1000);
+});
+
 </script>
 </body>
 </html>
