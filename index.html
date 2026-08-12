@@ -1854,11 +1854,10 @@ const supabaseClient = supabase.createClient(
 
 async function ambilProdukSupabase() {
   try {
-    const { data, error } = await supabaseClient
-      .from("products")
-      .select("id, name, price, stock, satuan, image_url, description, active")
-      .eq("active", true)
-      .order("id", { ascending: true });
+  const { data, error } = await supabaseClient
+  .from("products")
+  .select("*")
+  .order("id", { ascending: true });
 
     if (error) {
       console.error("Gagal mengambil produk:", error);
